@@ -3,4 +3,5 @@
     <dimen name="default_short_margin">8dp</dimen>
 
     <dimen name="ingredient_text_size">18sp</dimen>
+    <dimen name="recipe_icon_size">50dp</dimen>
 </resources>

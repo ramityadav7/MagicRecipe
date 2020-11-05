@@ -51,6 +51,10 @@ class SearchFragment : CoreFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+       initializeView()
+    }
+
+    private fun initializeView() {
         compositeDisposable.add(RxView.clicks(imageViewAdd)
             .subscribe { handleAdd() })
         compositeDisposable.add(RxView.clicks(buttonSearch)

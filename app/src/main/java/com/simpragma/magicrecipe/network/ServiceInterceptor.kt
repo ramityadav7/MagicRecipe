@@ -21,7 +21,8 @@ class ServiceInterceptor @Inject constructor() : Interceptor {
 
         request = builder.build()
 
-        return chain.proceed(request)
+        val response = chain.proceed(request)
+        return response
     }
 
     private fun setHeaders(builder : Builder, token : String?) {
