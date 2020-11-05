@@ -1,6 +1,5 @@
 package com.simpragma.magicrecipe.application.di
 
-import android.content.Context
 import com.countries.assignment.network.ServiceInterceptor
 import com.google.gson.Gson
 import com.simpragma.magicrecipe.BuildConfig
@@ -14,7 +13,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.URL
 import javax.inject.Singleton
 
 @Module
@@ -23,8 +21,7 @@ object AppModule {
     @JvmStatic
     @Singleton
     @Provides
-    fun provideRetrofitApi (context: Context, serviceInterceptor: ServiceInterceptor) : Retrofit {
-        var url = URL(BASE_URL)
+    fun provideRetrofitApi (serviceInterceptor: ServiceInterceptor) : Retrofit {
         var  builder = OkHttpClient
             .Builder()
 
@@ -47,7 +44,7 @@ object AppModule {
     @JvmStatic
     @Singleton
     @Provides
-    fun provideTasksRemoteDataSource(context: Context, serviceInterceptor: ServiceInterceptor): ApiService {
-        return provideRetrofitApi(context, serviceInterceptor).create(ApiService::class.java)
+    fun provideTasksRemoteDataSource(serviceInterceptor: ServiceInterceptor): ApiService {
+        return provideRetrofitApi(serviceInterceptor).create(ApiService::class.java)
     }
 }

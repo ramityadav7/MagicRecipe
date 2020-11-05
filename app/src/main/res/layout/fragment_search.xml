@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
+        android:maxLength="30"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSearch"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:hint="@string/search_hint"/>
+    <ImageView
+        android:id="@+id/imageViewAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextSearch"
+        app:layout_constraintTop_toTopOf="@+id/editTextSearch"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextSearch"
+        android:src="@drawable/add_selector"
+        android:layout_marginStart="@dimen/default_margin"/>
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_recipe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/search_selector"
+        android:textColor="@color/ingredient_background"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
+        android:padding="@dimen/default_short_margin"
+        android:enabled="false"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/fblSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:alignItems="stretch"
+        app:alignContent="stretch"
+        app:layout_constraintBottom_toTopOf="@+id/editTextSearch"
+        android:layout_marginBottom="@dimen/default_margin"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,4 +2,6 @@
     <string name="app_name">MagicRecipe</string>
     <string name="action_settings">Settings One</string>
 
+    <string name="search_recipe">Search Recipe</string>
+    <string name="search_hint">Add ingredient</string>
 </resources>
