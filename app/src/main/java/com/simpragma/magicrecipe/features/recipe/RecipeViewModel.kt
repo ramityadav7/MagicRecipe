@@ -1,14 +1,14 @@
 package com.simpragma.magicrecipe.features.recipe
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.simpragma.magicrecipe.features.recipe.model.RecipeUiModel
+import androidx.paging.PagedList
+import com.simpragma.magicrecipe.network.model.Result
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class RecipeViewModel @Inject constructor(private val recipeRepository: RecipeRepository) : ViewModel() {
-    var recipeLiveData: MutableLiveData<RecipeUiModel> = recipeRepository.recipeLiveData
-
-    fun getRecipe(ingredientQuery : String) {
-        recipeRepository.getRecipe(ingredientQuery)
+    fun getRecipeLiveData(compositeDisposable: CompositeDisposable, query: String) : LiveData<PagedList<Result>> {
+        return recipeRepository.getRecipeLiveData(compositeDisposable, query)
     }
 }

@@ -12,13 +12,4 @@
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    <ProgressBar
-        android:id="@+id/progressBarRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/recipeRecyclerView"
-        app:layout_constraintEnd_toEndOf="@+id/recipeRecyclerView"
-        app:layout_constraintStart_toStartOf="@+id/recipeRecyclerView"
-        app:layout_constraintTop_toTopOf="@+id/recipeRecyclerView" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

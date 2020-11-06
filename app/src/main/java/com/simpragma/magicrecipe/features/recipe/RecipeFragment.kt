@@ -7,17 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.simpragma.magicrecipe.MainActivity
 import com.simpragma.magicrecipe.R
 import com.simpragma.magicrecipe.application.MagicRecipeApplication
 import com.simpragma.magicrecipe.common.AppConstant
 import com.simpragma.magicrecipe.core.CoreFragment
-import com.simpragma.magicrecipe.features.recipe.model.RecipeUiModel
 import com.simpragma.magicrecipe.network.model.Result
 import kotlinx.android.synthetic.main.fragment_recipe.*
 import javax.inject.Inject
+
 
 class RecipeFragment : CoreFragment(), ItemClickHandler {
     @Inject
@@ -55,23 +54,11 @@ class RecipeFragment : CoreFragment(), ItemClickHandler {
     private fun initializeView() {
         recipeRVAdapter = RecipeRVAdapter(recipeData, context?.applicationContext!!, this)
         recipeRecyclerView.adapter = recipeRVAdapter
-        viewModel.getRecipe(searchQuery)
     }
 
     private fun setUpRx() {
-        viewModel.recipeLiveData.observe(viewLifecycleOwner, Observer { recipeUiModel : RecipeUiModel ->
-
-            if(recipeUiModel.showProgress) {
-                progressBarRecipe.visibility = View.VISIBLE
-                recipeRecyclerView.visibility = View.GONE
-            } else {
-                progressBarRecipe.visibility = View.GONE
-                recipeRecyclerView.visibility = View.VISIBLE
-            }
-
-            recipeData.clear()
-            if(recipeUiModel.recipeList != null)
-                recipeData.addAll(recipeUiModel.recipeList?.toMutableList()!!)
+        viewModel.getRecipeLiveData(compositeDisposable, searchQuery).observe(viewLifecycleOwner, {
+            recipeRVAdapter.submitList(it)
         })
     }
 

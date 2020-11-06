@@ -1,5 +1,6 @@
 package com.simpragma.magicrecipe.features.recipe
 
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,9 +21,12 @@ class RecipeItemHolder(view: View, var itemClickHandler: ItemClickHandler) : Rec
 
     fun bindItemViewHolder(result: Result) {
         itemView.setOnClickListener(null)
-        itemView.titleTV.text = result.title
-        itemView.textViewIngredient.text = result.ingredients
-        Picasso.get().load(result.thumbnail).into(itemView.imageViewRecipe)
+        if(!TextUtils.isEmpty(result.title))
+            itemView.titleTV.text = result.title
+        if(!TextUtils.isEmpty(result.ingredients))
+            itemView.textViewIngredient.text = result.ingredients
+        if(!TextUtils.isEmpty(result.thumbnail))
+            Picasso.get().load(result.thumbnail).into(itemView.imageViewRecipe)
     }
 
     override fun onClick(p0: View?) {
