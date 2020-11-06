@@ -4,4 +4,6 @@
 
     <string name="search_recipe">Search Recipe</string>
     <string name="search_hint">Add ingredient</string>
+
+    <string name="detail">Detail</string>
 </resources>

@@ -2,12 +2,14 @@ package com.simpragma.magicrecipe.features.recipe
 
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.simpragma.magicrecipe.MainActivity
 import com.simpragma.magicrecipe.R
 import com.simpragma.magicrecipe.application.MagicRecipeApplication
@@ -24,7 +26,6 @@ class RecipeFragment : CoreFragment(), ItemClickHandler {
     private val viewModel by viewModels<RecipeViewModel> { viewModelFactory }
     private lateinit var searchQuery : String
     private lateinit var recipeRVAdapter: RecipeRVAdapter
-    private var recipeData = mutableListOf<Result>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,7 +53,7 @@ class RecipeFragment : CoreFragment(), ItemClickHandler {
     }
 
     private fun initializeView() {
-        recipeRVAdapter = RecipeRVAdapter(recipeData, context?.applicationContext!!, this)
+        recipeRVAdapter = RecipeRVAdapter(this)
         recipeRecyclerView.adapter = recipeRVAdapter
     }
 
@@ -62,7 +63,8 @@ class RecipeFragment : CoreFragment(), ItemClickHandler {
         })
     }
 
-    override fun handleItemClick(name: String) {
-        TODO("Not yet implemented")
+    override fun handleItemClick(url: String) {
+        if(!TextUtils.isEmpty(url))
+            viewModel.navigateDetailFragment(findNavController(), url)
     }
 }

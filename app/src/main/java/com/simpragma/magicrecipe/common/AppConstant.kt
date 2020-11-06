@@ -4,4 +4,5 @@ object AppConstant {
     const val BASE_URL = "http://www.recipepuppy.com/api/"
 
     const val BUNDLE_SEARCH_QUERY = "BUNDLE_SEARCH_QUERY"
+    const val BUNDLE_URL = "BUNDLE_URL"
 }

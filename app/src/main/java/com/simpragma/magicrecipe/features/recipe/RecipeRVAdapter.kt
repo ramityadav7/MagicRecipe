@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.simpragma.magicrecipe.network.model.Result
 
-class RecipeRVAdapter(var resultList : List<Result>, context : Context, var itemClickHandler: ItemClickHandler) :
+class RecipeRVAdapter(var itemClickHandler: ItemClickHandler) :
     PagedListAdapter<Result, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

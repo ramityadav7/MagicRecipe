@@ -27,6 +27,9 @@ class RecipeItemHolder(view: View, var itemClickHandler: ItemClickHandler) : Rec
             itemView.textViewIngredient.text = result.ingredients
         if(!TextUtils.isEmpty(result.thumbnail))
             Picasso.get().load(result.thumbnail).into(itemView.imageViewRecipe)
+        if(!TextUtils.isEmpty(result.href))
+            itemView.tag = result.href
+        itemView.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
